@@ -11,10 +11,12 @@ class Form extends Component {
     const { email, password } = this.props.formReducer.logIn
     const { logIn } = this.props
     const re = /\S+@\S+\.\S+/
-    re.test(email) ? logIn(email, password) : null
+    if (re.test(email)) {
+      logIn(email, password)
+    }
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Row style={{ marginTop: '40px' }}>
@@ -22,9 +24,9 @@ class Form extends Component {
             <Col lg={12} style={{ textAlign: 'center' }}>
               <h3>Sign In</h3>
             </Col>
-            <SignForm title="logIn" />
+            <SignForm title='logIn' />
             <Col lg={12} style={{ textAlign: 'center' }}>
-              <Button type="submit" bsStyle="info" onClick={this.logIn}>
+              <Button type='submit' bsStyle='info' onClick={this.logIn}>
                 Sign In
               </Button>
             </Col>

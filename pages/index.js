@@ -4,7 +4,7 @@ import withRedux from 'next-redux-wrapper'
 import Main from '../components/signIn'
 
 class LogIn extends React.Component {
-  render() {
+  render () {
     return (
       <div>
         <Main />

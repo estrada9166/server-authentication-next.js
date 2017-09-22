@@ -11,10 +11,10 @@ class Input extends Component {
     inputChange(title, name, e.target.value)
   }
 
-  render() {
+  render () {
     return (
       <div>
-        <FormGroup controlId="formBasicText">
+        <FormGroup controlId='formBasicText'>
           <ControlLabel>{this.props.placeholder}</ControlLabel>
           <FormControl
             disabled={this.props.disabled}
