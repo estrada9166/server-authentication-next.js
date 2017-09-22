@@ -6,19 +6,18 @@ import Logo from '../utils/SignLogo'
 import Form from './Form'
 
 class Main extends Component {
-  componentWillUpdate(nextProps) {
-    console.log(nextProps)
-    if(nextProps.signReducer.token) {
+  componentWillUpdate (nextProps) {
+    if (nextProps.signReducer.token) {
       document.location.pathname = '/profile'
     }
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Head>
           <title>Sign Up</title>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
+          <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css' />
         </Head>
         <div style={{ marginTop: '200px' }}>
           <Col lg={4} lgOffset={2} style={{ borderRight: '2px solid #ccc', height: '350px' }}>

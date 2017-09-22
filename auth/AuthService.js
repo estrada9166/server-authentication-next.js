@@ -2,14 +2,14 @@ const jwt = require('jsonwebtoken')
 
 const createJWT = token => {
   return jwt.sign({
-      token
+    token
   }, 'secret account key')
 }
 
-const user = [];
+const user = []
 
 export default class AuthService {
-  constructor() {
+  constructor () {
     user.push({
       name: 'Demo',
       email: 'demo@demo.com',
@@ -17,8 +17,8 @@ export default class AuthService {
       token: createJWT(123456789)
     })
   }
-  
-  logIn(email, password) {
+
+  logIn (email, password) {
     for (let i = 0; i < user.length; i++) {
       if (email === user[i].email) {
         return password === user[i].password ? user[i].token : false
@@ -27,7 +27,7 @@ export default class AuthService {
     return false
   }
 
-  createUser(name, email, password) {
+  createUser (name, email, password) {
     const token = createJWT('Demo')
     user.push({
       name,
