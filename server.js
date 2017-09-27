@@ -12,56 +12,50 @@ const verifyJWT = token => {
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 
+const isLoggedIn = async (req, res, next) => {
+  try {
+    await verifyJWT(req.cookies['id_token'])
+    return res.redirect('/profile')
+  } catch (err) {
+    next()
+    return;
+  }
+}
+
+const isNotLoggedIn = async (req, res, next) => {
+  try {
+    await verifyJWT(req.cookies['id_token'])
+    next()
+    return;
+  } catch (err) {
+    return res.redirect('/')    
+  }
+}
+
 app.prepare()
 .then(() => {
   const server = express()
 
   server.use(cookieParser())
 
-  server.use(async (req, res, next) => {
-    try {
-      await verifyJWT(req.cookies['id_token'])
-      res.locals.logged = true
-    } catch (err) {
-      res.locals.logged = false
-    }
-    next()
-  })
-
-  server.get('/', (req, res) => {
+  server.get('/', isLoggedIn, (req, res) => {
     const actualPage = '/'
-    const logged = res.locals.logged
-    if (logged) {
-      return res.redirect('/profile')
-    }
     return app.render(req, res, actualPage)
   })
 
-  server.get('/signUp', (req, res) => {
+  server.get('/signUp', isLoggedIn,(req, res) => {
     const actualPage = '/signUp'
-    const logged = res.locals.logged
-    if (logged) {
-      return res.redirect('/profile')
-    }
     return app.render(req, res, actualPage)
   })
 
-  server.get('/profile', (req, res) => {
+  server.get('/profile', isNotLoggedIn, (req, res) => {
     const actualPage = '/profile'
-    const logged = res.locals.logged
-    if (logged) {
-      return app.render(req, res, actualPage)
-    }
-    return res.redirect('/')
+    return app.render(req, res, actualPage)
   })
 
-  server.get('/other', (req, res) => {
+  server.get('/other', isNotLoggedIn, (req, res) => {
     const actualPage = '/other'
-    const logged = res.locals.logged
-    if (logged) {
-      return app.render(req, res, actualPage)
-    }
-    return res.redirect('/')
+    return app.render(req, res, actualPage)
   })
 
   server.get('*', (req, res) => {
