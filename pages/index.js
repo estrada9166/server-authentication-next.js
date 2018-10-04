@@ -1,7 +1,8 @@
 import React from 'react'
 import { initStore } from '../store'
-import withRedux from 'next-redux-wrapper'
 import Main from '../components/signIn'
+import {connect} from "react-redux";
+
 
 class LogIn extends React.Component {
   render () {
@@ -13,4 +14,4 @@ class LogIn extends React.Component {
   }
 }
 
-export default withRedux(initStore, null)(LogIn)
+export default connect(initStore, null)(LogIn)

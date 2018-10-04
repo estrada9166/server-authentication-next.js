@@ -2,6 +2,8 @@ import React from 'react'
 import { initStore } from '../store'
 import withRedux from 'next-redux-wrapper'
 import Main from '../components/other'
+import {connect} from "react-redux";
+
 
 class Other extends React.Component {
   render () {
@@ -12,5 +14,4 @@ class Other extends React.Component {
     )
   }
 }
-
-export default withRedux(initStore, null)(Other)
+export default connect(initStore, null)(Other);

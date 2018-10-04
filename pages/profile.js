@@ -1,7 +1,8 @@
 import React from 'react'
 import { initStore } from '../store'
-import withRedux from 'next-redux-wrapper'
 import Main from '../components/profile'
+import {connect} from "react-redux";
+
 
 class Profile extends React.Component {
   render () {
@@ -13,4 +14,4 @@ class Profile extends React.Component {
   }
 }
 
-export default withRedux(initStore, null)(Profile)
+export default connect(initStore, null)(Profile)
