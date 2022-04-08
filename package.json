@@ -15,7 +15,7 @@
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "next": "^9.1.1",
     "next-redux-wrapper": "^4.0.1",
     "react": "^16.10.2",
